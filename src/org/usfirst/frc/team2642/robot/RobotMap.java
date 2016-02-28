@@ -12,27 +12,24 @@ public class RobotMap {
 	public static int cammount = 11;
 	public static int bigArmWinch = 0;
 	public static int bigArmExtend = 10;
-	public static int btnBigArmExtend = 2;
-	public static int btnBigArmRetract = 3;
+	public static int btnBigArmExtend = 11;
+	public static int btnBigArmRetract = 10;
 
 	/***************************************************/
-	public static int btnShooterTurrentUp = 5;
-	public static int btnShooterTurrentDown = 6;
-	public static int btnRollerArmUp = 4;
-	public static int btnRollerArmDown = 5;
+	public static int btnShooterTurretUp = 2;
+	public static int btnShooterTurretDown = 3;
+	//public static int btnRollerArmUp = 5;
+	//public static int btnRollerArmDown = 4;
 	
 	public static int rollerArmMotor = 8;
-	public static double rollerArmMotorSpeed = .55;
 	public static int rollerArmPot = 1;
 	public static int rollerArmUpperLimitSwitch = 3;
 	public static int rollerArmLowerLimitSwitch = 2;
-	
-	public static int shooterTurrentMotor = 7;
-	public static double shooterTurrentMotorSpeed = .4;
-	public static int shooterTurrentPot = 0;
-	public static int shooterTurrentUpperLimitSwitch = 1;
-	public static int shooterTurrentLowerLimitSwitch = 0;
+	public static double rollerArmMotorSpeed = .7;
+	public static int shootermotor = 7;
+	public static int shooterpot = 0;
 	/****************************************************/
+	
 	
  
 	

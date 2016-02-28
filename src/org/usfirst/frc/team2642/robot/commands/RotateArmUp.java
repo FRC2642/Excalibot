@@ -7,10 +7,10 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class ShooterTurrentDown extends Command {
+public class RotateArmUp extends Command {
 
-    public ShooterTurrentDown() {
-    	requires(Robot.shooterTurrent);
+    public RotateArmUp() {
+    	requires(Robot.armwinch);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -21,15 +21,12 @@ public class ShooterTurrentDown extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(!Robot.shooterTurrent.getIsLowerLimit())
-    	{
-    		Robot.shooterTurrent.down();
-    	}
+    	Robot.armwinch.raisearm();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+        return false;
     }
 
     // Called once after isFinished returns true

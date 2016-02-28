@@ -1,7 +1,7 @@
 package org.usfirst.frc.team2642.robot.subsystems;
 
 import org.usfirst.frc.team2642.robot.RobotMap;
-import org.usfirst.frc.team2642.robot.commands.MoveBigArm;
+import org.usfirst.frc.team2642.robot.commands.StopArm;
 
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -25,7 +25,7 @@ public class ArmWinch extends Subsystem {
     // here. Call these from Commands.
 
     public void initDefaultCommand() {
-    	setDefaultCommand(new MoveBigArm());
+    	setDefaultCommand(new StopArm());
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }

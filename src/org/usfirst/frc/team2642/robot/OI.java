@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 import org.usfirst.frc.team2642.robot.commands.*;
+import org.usfirst.frc.team2642.robot.subsystems.ShooterAim;
 
 import edu.wpi.first.wpilibj.Joystick;
 
@@ -16,16 +17,16 @@ public class OI {
 	public Joystick getxbox(){
 		return xboxStick;
 	}
-	public Button xboxIntake = new JoystickButton(xboxStick, 1);
-	public Button xboxRelease = new JoystickButton(xboxStick, 2);
+	//public Button xboxIntake = new JoystickButton(xboxStick, 1);
+	//public Button xboxRelease = new JoystickButton(xboxStick, 2);
 	public Button xboxSpinUp = new JoystickButton(xboxStick, 3);
-	public Button xboxY = new JoystickButton(xboxStick, 4);
+	//public Button xboxY = new JoystickButton(xboxStick, 4);
 	//public Button xboxToggleAim = new JoystickButton(xboxStick, 5);
 	//public Button xboxRB= new JoystickButton(xboxStick, 6);
 	//public Button xboxBack = new JoystickButton(xboxStick, 7);
 	//public Button xboxStart = new JoystickButton(xboxStick, 8);
-	public Button xboxLeftClick = new JoystickButton(xboxStick, 9);
-	public Button xboxRightClick = new JoystickButton(xboxStick, 10);
+	//public Button xboxLeftClick = new JoystickButton(xboxStick, 9);
+	//public Button xboxRightClick = new JoystickButton(xboxStick, 10);
 	
 	
 	
@@ -33,39 +34,66 @@ public class OI {
 	public Joystick getarm(){
 			 return armStick;
 	}
+	// Note to self: Make new commands for raising and lowering the big arm,
+	// then declare buttons to run each command
 	public Button armIntake = new JoystickButton(armStick, 1);
-	public Button armRetract = new JoystickButton(armStick, 2);
-	public Button armExtend = new JoystickButton(armStick, 3);
+	public Button shooterTop = new JoystickButton(armStick, 2);
+	public Button shooterBottom = new JoystickButton(armStick, 3);
+	//Roller Arm is the Y axis
+	public Button armRaise = new JoystickButton(armStick, 7);
+	public Button armLower = new JoystickButton(armStick, 6);
+	public Button armExtend = new JoystickButton(armStick, 11);
+	public Button armRetract = new JoystickButton(armStick, 10);
+	public Button rollerTurbo = new JoystickButton(armStick, 8);
+	//public Button armShooterUp = new JoystickButton(armStick, RobotMap.btn)
 	
 	
 	public Joystick auxillary = new Joystick(2);
 	public Button auxFire = new JoystickButton(auxillary, 1);			//Fire
 	public Button auxSlow = new JoystickButton(auxillary, 2);			//Slow Release
 	public Button auxSpinUp = new JoystickButton(auxillary, 3);			//Spin Up
-	public Button auxDeployOut = new JoystickButton(auxillary, 4);		//Deployer
-	public Button auxDeployIn = new JoystickButton(auxillary, 5);				
-	public Button auxDToggleSet = new JoystickButton(auxillary, 6);		//Deployer Toggle
-	public Button auxDToggleCustom = new JoystickButton(auxillary, 7);
+	//public Button auxDeployOut = new JoystickButton(auxillary, 4);		//Deployer
+	//public Button auxDeployIn = new JoystickButton(auxillary, 5);				
+	//public Button auxDToggleSet = new JoystickButton(auxillary, 6);		//Deployer Toggle
+	//public Button auxDToggleCustom = new JoystickButton(auxillary, 7);
 	
 	/***********************************************/
-	Button btnShooterTurrentUp = new JoystickButton(xboxStick, RobotMap.btnShooterTurrentUp);
-	Button btnShooterTurrentDown = new JoystickButton(xboxStick, RobotMap.btnShooterTurrentDown);
-	Button btnRollerArmUp = new JoystickButton(auxillary, RobotMap.btnRollerArmUp);
-	Button btnRollerArmDown = new JoystickButton(auxillary, RobotMap.btnRollerArmDown);
+	Button btnShooterTurretUp = new JoystickButton(xboxStick, RobotMap.btnShooterTurretUp);
+	Button btnShooterTurretDown = new JoystickButton(xboxStick, RobotMap.btnShooterTurretDown);
+	//Button btnRollerArmUp = new JoystickButton(auxillary, RobotMap.btnRollerArmUp);
+	//Button btnRollerArmDown = new JoystickButton(auxillary, RobotMap.btnRollerArmDown);
 	/***********************************************/
 
 		
 	public OI() {
+		if(shooterTop.get() && !shooterBottom.get()){
+			new SetShooterSetpoint(0.580);
+		}else if(shooterBottom.get() && !shooterTop.get()){
+			new SetShooterSetpoint(0.915);
+		}else if(!(Robot.shooteraim.getSetpoint() == 0.680)){
+			new SetShooterSetpoint(0.680);
+		}
+		
 		//xboxToggleAim.whileHeld(new ShooterAim());
 		
 		/********************************************************/
-		btnShooterTurrentUp.whileHeld(new ShooterTurrentUp());
-		btnShooterTurrentDown.whileHeld(new ShooterTurrentDown());
-		btnRollerArmUp.whileHeld(new RollerArmUp());
-		btnRollerArmDown.whileHeld(new RollerArmDown());
+		
+	//	btnRollerArmUp.whileHeld(new RollerArmUp());
+	//	btnRollerArmDown.whileHeld(new RollerArmDown());
 		armRetract.whileHeld(new RetractArm());
 		armExtend.whileHeld(new ExtendArm());
-
+		if(armStick.getRawAxis(1) > .5){
+			new RollerArmDown();
+		}
+		if(armStick.getRawAxis(1) < -.5){
+			new RollerArmUp();
+		}
+		
+		if(rollerTurbo.get()){
+			RobotMap.rollerArmMotorSpeed = 1;
+		}else{
+			RobotMap.rollerArmMotorSpeed = .7;
+		}
 		/********************************************************/
 		
 	}

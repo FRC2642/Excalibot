@@ -29,7 +29,7 @@ public class Intake extends Subsystem {
     }
 	public void kick(boolean whack) {
 		if(whack){
-    		kicker.set(0.45);
+    		kicker.set(0.5);
     	}else{
     		kicker.set(0);
     	}

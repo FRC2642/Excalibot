@@ -23,9 +23,9 @@ public class ArcadeDrive extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	if(Robot.oi.getxbox().getRawAxis(2) > .45){
-    		Robot.drivetrain.drive(Robot.oi.getxbox().getRawAxis(1)*.9, Robot.oi.getxbox().getRawAxis(0)*.9);
+    		Robot.drivetrain.drive(Robot.oi.getxbox().getRawAxis(1), Robot.oi.getxbox().getRawAxis(0));
     	}else{
-    		Robot.drivetrain.drive(Robot.oi.getxbox().getRawAxis(1)*.6, Robot.oi.getxbox().getRawAxis(0)*.6);
+    		Robot.drivetrain.drive(Robot.oi.getxbox().getRawAxis(1)*.7, Robot.oi.getxbox().getRawAxis(0)*.7);
 
     	}
     }

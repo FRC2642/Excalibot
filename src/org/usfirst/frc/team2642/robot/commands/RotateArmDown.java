@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class MoveBigArm extends Command {
+public class RotateArmDown extends Command {
 
-    public MoveBigArm() {
+    public RotateArmDown() {
     	requires(Robot.armwinch);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -21,14 +21,7 @@ public class MoveBigArm extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(Robot.oi.getarm().getRawAxis(1) >= .5){
-    		Robot.armwinch.raisearm();
-    	}else if(Robot.oi.getarm().getRawAxis(1) <= .5){
-    		Robot.armwinch.lowerarm();
-    	}else{
-    		Robot.armwinch.idlearm();
-    	}
-    	
+    	Robot.armwinch.lowerarm();
     }
 
     // Make this return true when this Command no longer needs to run execute()
