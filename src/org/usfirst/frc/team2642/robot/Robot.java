@@ -7,6 +7,10 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+import org.usfirst.frc.team2642.robot.commands.CornerShotAuto;
+import org.usfirst.frc.team2642.robot.commands.LowBarToCorner;
+import org.usfirst.frc.team2642.robot.commands.PowerOverDefense;
 import org.usfirst.frc.team2642.robot.subsystems.*;
 
 /**
@@ -22,10 +26,11 @@ public class Robot extends IterativeRobot {
 	public static final Intake intake = new Intake();
 	public static final Roller roller = new Roller();
 	public static final CameraMount cameramount = new CameraMount();
-	public static final ArmWinch armwinch = new ArmWinch();
 	public static final RollerArm rollerArm = new RollerArm();
 	public static final ShooterAim shooteraim = new ShooterAim();
 	public static final ArmExtender armextender = new ArmExtender();
+	public static final ArmLifter armlifter = new ArmLifter();
+	public static final EncoderSubsystem theEncoder = new EncoderSubsystem();
 	
 	public static OI oi;
 
@@ -39,7 +44,10 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
 		oi = new OI();
         chooser = new SendableChooser();
-//        chooser.addObject("My Auto", new MyAutoCommand());
+        chooser.addObject("Do Nothing", null);
+        chooser.addObject("Power Over Defense", new PowerOverDefense());
+        chooser.addObject("Low Bar To Corner", new LowBarToCorner());
+        chooser.addObject("Corner Shot", new CornerShotAuto());
         SmartDashboard.putData("Auto mode", chooser);
     }
 	
@@ -68,16 +76,21 @@ public class Robot extends IterativeRobot {
     public void autonomousInit() {
         autonomousCommand = (Command) chooser.getSelected();
         
-		/* String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
+		String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
 		switch(autoSelected) {
-		case "My Auto":
-			autonomousCommand = new MyAutoCommand();
+		case "Power Over Defense":
+			autonomousCommand = new PowerOverDefense();
 			break;
-		case "Default Auto":
+		case "Low Bar To Corner":
+			autonomousCommand = new LowBarToCorner();
+			break;
+		case "Corner Shot":
+			autonomousCommand = new CornerShotAuto();
+			break;
+		case "Do Nothing":
 		default:
-			autonomousCommand = new ExampleCommand();
 			break;
-		} */
+		} 
     	
     	// schedule the autonomous command (example)
         if (autonomousCommand != null) autonomousCommand.start();

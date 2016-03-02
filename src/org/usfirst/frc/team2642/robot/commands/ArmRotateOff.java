@@ -7,10 +7,10 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class RollerArmStop extends Command {
+public class ArmRotateOff extends Command {
 
-    public RollerArmStop() {
-    	requires(Robot.rollerArm);
+    public ArmRotateOff() {
+    	requires(Robot.armlifter);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -21,12 +21,12 @@ public class RollerArmStop extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.rollerArm.stop();
+    	Robot.armlifter.off();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+        return false;
     }
 
     // Called once after isFinished returns true

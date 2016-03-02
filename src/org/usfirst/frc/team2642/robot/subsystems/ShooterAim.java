@@ -16,10 +16,10 @@ public class ShooterAim extends PIDSubsystem {
 	Talon shootermotor = new Talon(RobotMap.shootermotor);
 	//Encoder encoder = new Encoder(0,1);
     AnalogPotentiometer shooterpot = new AnalogPotentiometer(RobotMap.shooterpot);
-	public double shooterset = 0.6;
+	public double shooterset = RobotMap.shootermid;
     // Initialize your subsystem here
     public ShooterAim() {
-    	super("ShooterAim", 5,0,0.1);
+    	super("ShooterAim", 5,0,0.01);
     	setSetpoint(shooterset);
     	enable();
         // Use these to get going:
@@ -35,7 +35,7 @@ public class ShooterAim extends PIDSubsystem {
     }
     
     protected double returnPIDInput() {
-    	System.out.println(shooterpot.pidGet());
+    	//System.out.println(shooterpot.pidGet());
 //    	System.out.println(this.getSetpoint());
 //    	System.out.println(encoder.pidGet());
 //    	return encoder.pidGet();

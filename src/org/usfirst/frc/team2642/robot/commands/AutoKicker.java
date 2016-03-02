@@ -7,10 +7,11 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class RollerArmDown extends Command {
-
-    public RollerArmDown() {
-    	requires(Robot.rollerArm);
+public class AutoKicker extends Command {
+	boolean push;
+    public AutoKicker(boolean push) {
+    	requires(Robot.intake);
+    	this.push = push;
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -21,15 +22,12 @@ public class RollerArmDown extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(!Robot.rollerArm.getIsLowerLimit())
-    	{
-    		Robot.rollerArm.down();
-    	}
-    	
+    	Robot.intake.kick(push);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
+        Robot.intake.kick(false);
         return true;
     }
 

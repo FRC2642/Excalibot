@@ -21,8 +21,8 @@ public class RobotMap {
 	//public static int btnRollerArmUp = 5;
 	//public static int btnRollerArmDown = 4;
 	
-	public static int rollerArmMotor = 8;
-	public static int rollerArmPot = 1;
+	public static int rollermotor = 8;
+	public static int rollerpot = 1;
 	public static int rollerArmUpperLimitSwitch = 3;
 	public static int rollerArmLowerLimitSwitch = 2;
 	public static double rollerArmMotorSpeed = .7;
@@ -30,6 +30,10 @@ public class RobotMap {
 	public static int shooterpot = 0;
 	/****************************************************/
 	
+	public static double shootertop = 0.460;
+	public static double shootermid = 0.673;
+	public static double shooterlow = 0.765;
+	public static double shootercorner = .415;
 	
  
 	

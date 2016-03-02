@@ -1,53 +1,57 @@
 package org.usfirst.frc.team2642.robot.subsystems;
 
+import org.usfirst.frc.team2642.robot.Robot;
 import org.usfirst.frc.team2642.robot.RobotMap;
-import org.usfirst.frc.team2642.robot.commands.RollerArmStop;
 
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
-import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Talon;
-import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.command.PIDSubsystem;
 
 /**
  *
  */
-public class RollerArm extends Subsystem {
-	Talon rollerArmMotor = new Talon(RobotMap.rollerArmMotor);
-	AnalogPotentiometer rollerArmPot = new AnalogPotentiometer(RobotMap.rollerArmPot);
-	DigitalInput lowerLimitSwitch = new DigitalInput(RobotMap.rollerArmLowerLimitSwitch);
-	DigitalInput upperLimitSwitch = new DigitalInput(RobotMap.rollerArmUpperLimitSwitch);
-	
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
-
+public class RollerArm extends PIDSubsystem {
+	public Talon rollermotor = new Talon(RobotMap.rollermotor);
+	//Encoder encoder = new Encoder(0,1);
+    AnalogPotentiometer rollerpot = new AnalogPotentiometer(RobotMap.rollerpot);
+	public double rollerset = 0.492;
+    // Initialize your subsystem here
+    public RollerArm() {
+    	super("RollerSet", 7,0,0);
+    	setSetpoint(rollerset);
+    	enable();
+        // Use these to get going:
+        // setSetpoint() -  Sets where the PID controller should move the system
+        //                  to
+        // enable() - Enables the PID controller.
+    }
+    
     public void initDefaultCommand() {
-    	setDefaultCommand(new RollerArmStop());
+//    	setDefaultCommand(new SetShooterSetpoint());
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
-
-    public void down()
-    {
-    	rollerArmMotor.set(RobotMap.rollerArmMotorSpeed * -1.0);
+    
+    protected double returnPIDInput() {
+    	//System.out.println(rollerpot.pidGet());
+//    	System.out.println(this.getSetpoint());
+//    	System.out.println(encoder.pidGet());
+//    	return encoder.pidGet();
+    	return rollerpot.pidGet();
+        // Return your input value for the PID loop
+        // e.g. a sensor, like a potentiometer:
+        // yourPot.getAverageVoltage() / kYourMaxVoltage;
+   // 	return shooterpot.get();
     }
     
-    public void up()
-    {
-    	rollerArmMotor.set(RobotMap.rollerArmMotorSpeed);
+    protected void usePIDOutput(double output) {
+    	rollermotor.set(-output);
+        // Use output to drive your system, like a motor
+        // e.g. yourMotor.set(output);
     }
     
-    public void stop()
-    {
-    	rollerArmMotor.set(0);
-    }
-    
-    public boolean getIsLowerLimit()
-    {
-    	return lowerLimitSwitch.get();
-    }
-    public boolean getIsUpperLimit()
-    {
-    	return upperLimitSwitch.get();
-    }
+//    public void setSetpoint(double setpoint) {
+//    	shooterset = setpoint;
+//    }
 }
-

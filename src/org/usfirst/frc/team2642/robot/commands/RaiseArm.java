@@ -7,10 +7,10 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class MoveBalls extends Command {
+public class RaiseArm extends Command {
 
-    public MoveBalls() {
-    	requires(Robot.roller);
+    public RaiseArm() {
+    	requires(Robot.armlifter);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -21,13 +21,7 @@ public class MoveBalls extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(Robot.oi.armIntake.get()){
-    		Robot.roller.rollballs(.7);
-    	}else if(Robot.oi.auxSlow.get()){
-    		Robot.roller.rollballs(-.7);
-    	}else{
-    		Robot.roller.rollballs(0);
-    	}
+    	Robot.armlifter.reverse();
     }
 
     // Make this return true when this Command no longer needs to run execute()

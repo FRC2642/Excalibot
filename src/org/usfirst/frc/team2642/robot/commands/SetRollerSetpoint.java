@@ -7,9 +7,11 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class RollerArmUp extends Command {
+public class SetRollerSetpoint extends Command {
+	double rsetpoint;
 
-    public RollerArmUp() {
+    public SetRollerSetpoint(double rsetpoint) {
+    	this.rsetpoint = rsetpoint;
     	requires(Robot.rollerArm);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -17,19 +19,17 @@ public class RollerArmUp extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.rollerArm.setSetpoint(rsetpoint);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(!Robot.rollerArm.getIsUpperLimit())
-    	{
-    		Robot.rollerArm.up();
-    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+    	return Math.abs(Robot.rollerArm.getSetpoint() - Robot.rollerArm.getPosition()) < 0.03;
+
     }
 
     // Called once after isFinished returns true
