@@ -22,9 +22,9 @@ public class MoveBalls extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	if(Robot.oi.armIntake.get()){
-    		Robot.roller.rollballs(.7);
-    	}else if(Robot.oi.auxSlow.get()){
     		Robot.roller.rollballs(-.7);
+    	}else if(Robot.oi.auxSlow.get()){
+    		Robot.roller.rollballs(.7);
     	}else{
     		Robot.roller.rollballs(0);
     	}

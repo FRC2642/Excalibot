@@ -7,14 +7,11 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class CornerShotAuto extends CommandGroup {
+public class LowBarShootAuto extends CommandGroup {
     
-    public  CornerShotAuto() {
-    	addParallel(new SetShooterSetpoint(RobotMap.shootercorner));
-    	addParallel(new SetRollerSetpoint(RobotMap.rollerdown));
-    	addSequential(new AutoShooterWheels(1, 3));
-    	addParallel(new AutoKicker(true));
-    	addSequential(new AutoShooterWheels(1, 1));
+    public  LowBarShootAuto() {
+    	addSequential(new SetRollerSetpoint(RobotMap.rollerdown));
+    	addSequential(new DriveForwardAuto(-.6, 0, 6));
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

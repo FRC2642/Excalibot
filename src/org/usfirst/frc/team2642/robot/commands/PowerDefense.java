@@ -5,10 +5,10 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class PowerOverDefense extends CommandGroup {
+public class PowerDefense extends CommandGroup {
     
-    public  PowerOverDefense() {
-    	addSequential(new AutoDrive(1,0, 120));
+    public  PowerDefense() {
+    	addSequential(new DriveForwardAuto(-1, 0, 1.7));
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

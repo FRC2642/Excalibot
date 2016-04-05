@@ -7,12 +7,11 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class LowBarToCorner extends CommandGroup {
+public class PorticullusAuto extends CommandGroup {
     
-    public  LowBarToCorner() {
-    	addSequential(new AutoDrive(.7, 0, 156));
-    	addSequential(new AutoDrive(0, -.7, -24));
-    	addParallel(new SetShooterSetpoint(RobotMap.shootercorner));
+    public  PorticullusAuto() {
+    	addSequential(new SetRollerSetpoint(RobotMap.rollerdown));
+    	addSequential(new DriveForwardAuto(-.6, 0, 6));
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

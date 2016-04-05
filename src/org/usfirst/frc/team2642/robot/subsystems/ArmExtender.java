@@ -13,10 +13,10 @@ public class ArmExtender extends Subsystem {
 	Talon armextend = new Talon(RobotMap.bigArmExtend);
 	
 	public void armExtend(){
-		armextend.set(.5);
+		armextend.set(1);
 		}
 	public void armRetract(){
-		armextend.set(-.5);
+		armextend.set(-1);
 		}
 	public void armIdle(){
 		armextend.set(0);	

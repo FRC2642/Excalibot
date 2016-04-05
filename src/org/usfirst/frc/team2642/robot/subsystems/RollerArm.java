@@ -15,10 +15,10 @@ public class RollerArm extends PIDSubsystem {
 	public Talon rollermotor = new Talon(RobotMap.rollermotor);
 	//Encoder encoder = new Encoder(0,1);
     AnalogPotentiometer rollerpot = new AnalogPotentiometer(RobotMap.rollerpot);
-	public double rollerset = 0.492;
+	public double rollerset = RobotMap.rollerup;
     // Initialize your subsystem here
     public RollerArm() {
-    	super("RollerSet", 7,0,0);
+    	super("RollerSet", 7, 0, 0);
     	setSetpoint(rollerset);
     	enable();
         // Use these to get going:

@@ -9,8 +9,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team2642.robot.commands.CornerShotAuto;
-import org.usfirst.frc.team2642.robot.commands.LowBarToCorner;
-import org.usfirst.frc.team2642.robot.commands.PowerOverDefense;
+import org.usfirst.frc.team2642.robot.commands.LowBarOnlyAuto;
+import org.usfirst.frc.team2642.robot.commands.LowBarShootAuto;
+import org.usfirst.frc.team2642.robot.commands.PorticullusAuto;
+import org.usfirst.frc.team2642.robot.commands.PowerDefense;
 import org.usfirst.frc.team2642.robot.subsystems.*;
 
 /**
@@ -30,7 +32,9 @@ public class Robot extends IterativeRobot {
 	public static final ShooterAim shooteraim = new ShooterAim();
 	public static final ArmExtender armextender = new ArmExtender();
 	public static final ArmLifter armlifter = new ArmLifter();
-	public static final EncoderSubsystem theEncoder = new EncoderSubsystem();
+	public static final Kicker kicker = new Kicker();
+	public static final REncoder rEncoder = new REncoder();
+	public static final LEncoder lEncoder = new LEncoder();
 	
 	public static OI oi;
 
@@ -45,9 +49,11 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
         chooser = new SendableChooser();
         chooser.addObject("Do Nothing", null);
-        chooser.addObject("Power Over Defense", new PowerOverDefense());
-        chooser.addObject("Low Bar To Corner", new LowBarToCorner());
+        chooser.addObject("Power Over Defense", new PowerDefense());
+        chooser.addObject("Low Bar", new LowBarOnlyAuto());
         chooser.addObject("Corner Shot", new CornerShotAuto());
+        chooser.addObject("Porticullus Auto", new PorticullusAuto());
+        chooser.addObject("Low Bar & Shoot", new LowBarShootAuto());
         SmartDashboard.putData("Auto mode", chooser);
     }
 	
@@ -79,16 +85,21 @@ public class Robot extends IterativeRobot {
 		String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
 		switch(autoSelected) {
 		case "Power Over Defense":
-			autonomousCommand = new PowerOverDefense();
+		default:
+			autonomousCommand = new PowerDefense();
 			break;
-		case "Low Bar To Corner":
-			autonomousCommand = new LowBarToCorner();
+		case "Low Bar":
+			autonomousCommand = new LowBarOnlyAuto();
 			break;
 		case "Corner Shot":
 			autonomousCommand = new CornerShotAuto();
 			break;
+		case "Porticullus Auto":
+			autonomousCommand = new PorticullusAuto();
+			break;
+		case "Low Bar & Shoot":
+			autonomousCommand = new LowBarShootAuto();
 		case "Do Nothing":
-		default:
 			break;
 		} 
     	

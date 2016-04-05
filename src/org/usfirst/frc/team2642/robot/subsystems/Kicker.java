@@ -1,23 +1,25 @@
 package org.usfirst.frc.team2642.robot.subsystems;
 
-import edu.wpi.first.wpilibj.command.Subsystem;
 import org.usfirst.frc.team2642.robot.RobotMap;
 import org.usfirst.frc.team2642.robot.commands.Shoot;
+
 import edu.wpi.first.wpilibj.Servo;
-import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  *
  */
-public class Intake extends Subsystem {
-    Talon leftin = new Talon(RobotMap.intakeleft);
-    Talon rightin = new Talon(RobotMap.intakeright);
+public class Kicker extends Subsystem {
+    Servo kicker = new Servo(RobotMap.kicker);
+
     
-    public void shooter(double speed){
-    	leftin.set(speed);
-    	rightin.set(-speed);
+    public void kick(boolean whack) {
+		if(whack){
+    		kicker.set(0.5);
+    	}else{
+    		kicker.set(0);
+    	}
     }
-    
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 

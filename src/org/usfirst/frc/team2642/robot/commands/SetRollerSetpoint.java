@@ -28,7 +28,7 @@ public class SetRollerSetpoint extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	return Math.abs(Robot.rollerArm.getSetpoint() - Robot.rollerArm.getPosition()) < 0.03;
+    	return Math.abs(Robot.rollerArm.getSetpoint() - Robot.rollerArm.getPosition()) < 0.1;
 
     }
 

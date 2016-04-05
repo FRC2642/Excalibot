@@ -33,10 +33,12 @@ public class RobotMap {
 	public static double shootertop = 0.460;
 	public static double shootermid = 0.673;
 	public static double shooterlow = 0.765;
-	public static double shootercorner = .415;
+	public static double shootercorner = 0.443;
+	public static double shooterbatter = 0.370;
 	
- 
-	
+	public static double rollerdown = 0.565;
+	public static double rollerup = 0.218;
+	public static double rollerball = 0.494;	
 	
 }
 	// For example to map the left and right motors, you could define the

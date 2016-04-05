@@ -11,6 +11,7 @@ public class Shoot extends Command {
 
     public Shoot() {
     	requires(Robot.intake);
+    	requires(Robot.kicker);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -23,24 +24,24 @@ public class Shoot extends Command {
     protected void execute() {
     	if(Robot.oi.armIntake.get()){						//Intake
     		Robot.intake.shooter(-.65);	
-    		Robot.intake.kick(false);
+    		Robot.kicker.kick(false);
     	}else if(Robot.oi.xboxSpinUp.get() || Robot.oi.auxSpinUp.get()){				//Shoot	
     		Robot.intake.shooter(1);
     		if((Robot.oi.getxbox().getRawAxis(3) > .45) || Robot.oi.auxFire.get()){
-    			Robot.intake.kick(true);
+    			Robot.kicker.kick(true);
     		}else{
-    			Robot.intake.kick(false);
+    			Robot.kicker.kick(false);
     		}
     	}else if(Robot.oi.auxSlow.get()){
     		Robot.intake.shooter(.60);
     		if((Robot.oi.getxbox().getRawAxis(3) > .45) || Robot.oi.auxFire.get()){
-    			Robot.intake.kick(true);
+    			Robot.kicker.kick(true);
     		}else{
-    			Robot.intake.kick(false);
+    			Robot.kicker.kick(false);
     		}
     	}else{																			//Idle
     		Robot.intake.shooter(0);
-    		Robot.intake.kick(false);
+    		Robot.kicker.kick(false);
     	}
     	}
 

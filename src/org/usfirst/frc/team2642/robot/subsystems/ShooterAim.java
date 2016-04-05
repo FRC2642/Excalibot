@@ -19,7 +19,7 @@ public class ShooterAim extends PIDSubsystem {
 	public double shooterset = RobotMap.shootermid;
     // Initialize your subsystem here
     public ShooterAim() {
-    	super("ShooterAim", 5,0,0.01);
+    	super("ShooterAim", 5.0, 0.000, 0.02);
     	setSetpoint(shooterset);
     	enable();
         // Use these to get going:

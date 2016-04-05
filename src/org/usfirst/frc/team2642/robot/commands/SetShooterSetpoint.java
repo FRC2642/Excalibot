@@ -42,7 +42,7 @@ public class SetShooterSetpoint extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	return Math.abs(Robot.shooteraim.getSetpoint() - Robot.shooteraim.getPosition()) < 0.01;
+    	return Math.abs(Robot.shooteraim.getSetpoint() - Robot.shooteraim.getPosition()) < 0.1;
     	
 //        return false;
     }

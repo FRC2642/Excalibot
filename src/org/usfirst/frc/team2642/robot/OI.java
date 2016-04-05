@@ -40,19 +40,24 @@ public class OI {
 	public Button shooterTop = new JoystickButton(armStick, 3);
 	public Button shooterBottom = new JoystickButton(armStick, 2);
 	public Button shooterCorner = new JoystickButton(armStick, 4);
+	public Button shooterBatter = new JoystickButton(armStick, 5);
 	//Roller Arm is the Y axis
-	public Button armRaise = new JoystickButton(armStick, 7);
-	public Button armLower = new JoystickButton(armStick, 6);
+	public Button armRaise = new JoystickButton(armStick, 9);
+	public Button armLower = new JoystickButton(armStick, 8);
 	public Button armExtend = new JoystickButton(armStick, 11);
 	public Button armRetract = new JoystickButton(armStick, 10);
 	public Button rollerTurbo = new JoystickButton(armStick, 8);
+	public Button armRArmUp = new JoystickButton(armStick, 6);
+	public Button armRArmDown = new JoystickButton(armStick, 7);
 	//public Button armShooterUp = new JoystickButton(armStick, RobotMap.btn)
 	
 	
 	public Joystick auxillary = new Joystick(2);
 	public Button auxFire = new JoystickButton(auxillary, 1);			//Fire
-	public Button auxSlow = new JoystickButton(auxillary, 3);			//Slow Release
-	public Button auxSpinUp = new JoystickButton(auxillary, 2);			//Spin Up
+	public Button auxSlow = new JoystickButton(auxillary, 2);			//Slow Release
+	public Button auxSpinUp = new JoystickButton(auxillary, 3);			//Spin Up
+	public Button auxDeployDown = new JoystickButton(auxillary, 6);
+	public Button auxDeployIn = new JoystickButton(auxillary, 7);
 	//public Button auxDeployOut = new JoystickButton(auxillary, 4);		//Deployer
 	//public Button auxDeployIn = new JoystickButton(auxillary, 5);				
 	//public Button auxDToggleSet = new JoystickButton(auxillary, 6);		//Deployer Toggle
@@ -67,12 +72,34 @@ public class OI {
 
 		
 	public OI() {
+		//Shooter Position
 		shooterTop.whenReleased(new SetShooterSetpoint(RobotMap.shootermid));
 		shooterBottom.whenReleased(new SetShooterSetpoint(RobotMap.shootermid));
 		shooterCorner.whenReleased(new SetShooterSetpoint(RobotMap.shootermid));
+		shooterBatter.whenReleased(new SetShooterSetpoint(RobotMap.shootermid));
 		shooterTop.whenPressed(new SetShooterSetpoint(RobotMap.shootertop));
 		shooterBottom.whenPressed(new SetShooterSetpoint(RobotMap.shooterlow));
 		shooterCorner.whenPressed(new SetShooterSetpoint(RobotMap.shootercorner));
+		shooterBatter.whenPressed(new SetShooterSetpoint(RobotMap.shooterbatter));
+		
+		//Roller Position
+		auxDeployDown.whenReleased(new SetRollerSetpoint(RobotMap.rollerball));
+		auxDeployIn.whenReleased(new SetRollerSetpoint(RobotMap.rollerball));
+		auxDeployDown.whenPressed(new SetRollerSetpoint(RobotMap.rollerdown));
+		auxDeployIn.whenPressed(new SetRollerSetpoint(RobotMap.rollerup));
+		armRArmDown.whenPressed(new SetRollerSetpoint(RobotMap.rollerdown));
+		armRArmUp.whenPressed(new SetRollerSetpoint(RobotMap.rollerup));
+		armRArmDown.whenReleased(new SetRollerSetpoint(RobotMap.rollerball));
+		armRArmUp.whenReleased(new SetRollerSetpoint(RobotMap.rollerball));
+		
+		//Hoist
+		armRetract.whileHeld(new RetractArm());
+		armExtend.whileHeld(new ExtendArm());
+		
+		//Release the Arm
+		armRaise.whileHeld(new RaiseArm());
+		armLower.whileHeld(new LowerArm());
+
 		
 		//xboxToggleAim.whileHeld(new ShooterAim());
 		
@@ -80,17 +107,7 @@ public class OI {
 		
 	//	btnRollerArmUp.whileHeld(new RollerArmUp());
 	//	btnRollerArmDown.whileHeld(new RollerArmDown());
-		armRetract.whileHeld(new RetractArm());
-		armExtend.whileHeld(new ExtendArm());
-		if((armStick.getRawAxis(1) >= .5) || (armStick.getRawAxis(1) <= -.5)){
-			new ManualRollerArm();
-		}else{
-			xboxB.whenPressed(new SetRollerSetpoint(0.502));
-			xboxA.whenPressed(new SetRollerSetpoint(0.557));
-			xboxY.whenPressed(new SetRollerSetpoint(0.220));
-		}
-		armRaise.whileHeld(new RaiseArm());
-		armLower.whileHeld(new LowerArm());
+		
 		
 		/********************************************************/
 		

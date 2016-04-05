@@ -7,12 +7,15 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class AutoKicker extends Command {
-	boolean push;
-    public AutoKicker(boolean push) {
-    	this.push = push;
-    	setTimeout(1);
-    	requires(Robot.kicker);
+public class DriveForwardAuto extends Command {
+	double forward, turn, timeout;
+    public DriveForwardAuto(double forward, double turn, double timeout) {
+    	this.forward = forward;
+    	this.turn = turn;
+    	this.timeout = timeout;
+    	requires(Robot.drivetrain);
+    	setTimeout(timeout);
+    	
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -23,7 +26,7 @@ public class AutoKicker extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.kicker.kick(push);
+    	Robot.drivetrain.drive(forward, turn);
     }
 
     // Make this return true when this Command no longer needs to run execute()
