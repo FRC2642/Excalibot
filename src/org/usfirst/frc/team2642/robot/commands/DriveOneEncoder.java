@@ -31,7 +31,7 @@ public class DriveOneEncoder extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if(distance >= Robot.rEncoder.getREncoder()){
+    	if(Robot.rEncoder.getREncoder() >= distance){
         return true;
     	}else{
     		return false;

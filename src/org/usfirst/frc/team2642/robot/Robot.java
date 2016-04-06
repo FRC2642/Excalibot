@@ -47,15 +47,7 @@ public class Robot extends IterativeRobot {
      */
     public void robotInit() {
 		oi = new OI();
-        chooser = new SendableChooser();
-        chooser.addObject("Do Nothing", null);
-        chooser.addObject("Power Over Defense", new PowerDefense());
-        chooser.addObject("Low Bar", new LowBarOnlyAuto());
-        chooser.addObject("Corner Shot", new CornerShotAuto());
-        chooser.addObject("Porticullus Auto", new PorticullusAuto());
-        chooser.addObject("Low Bar & Shoot", new LowBarShootAuto());
-        SmartDashboard.putData("Auto mode", chooser);
-    }
+	}
 	
 	/**
      * This function is called once each time the robot enters Disabled mode.
@@ -80,28 +72,31 @@ public class Robot extends IterativeRobot {
 	 * or additional comparisons to the switch structure below with additional strings & commands.
 	 */
     public void autonomousInit() {
-        autonomousCommand = (Command) chooser.getSelected();
-        
-		String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
-		switch(autoSelected) {
-		case "Power Over Defense":
-		default:
+       
+//		"Power Over Defense":
+    	if(oi.auto2.get()){
 			autonomousCommand = new PowerDefense();
-			break;
-		case "Low Bar":
+    	}
+//		"Low Bar":
+    	else if(oi.auto3.get()){
 			autonomousCommand = new LowBarOnlyAuto();
-			break;
-		case "Corner Shot":
+    	}
+//		"Corner Shot":
+    	else if(oi.auto4.get()){
 			autonomousCommand = new CornerShotAuto();
-			break;
-		case "Porticullus Auto":
+    	}
+//		"Porticullus Auto":
+    	else if(oi.auto5.get()){
 			autonomousCommand = new PorticullusAuto();
-			break;
-		case "Low Bar & Shoot":
+    	}
+//		"Low Bar & Shoot":
+    	else if(oi.auto6.get()){
 			autonomousCommand = new LowBarShootAuto();
-		case "Do Nothing":
-			break;
-		} 
+    	}
+//		"Do Nothing":
+    	else{
+    		autonomousCommand = null;
+    	}
     	
     	// schedule the autonomous command (example)
         if (autonomousCommand != null) autonomousCommand.start();

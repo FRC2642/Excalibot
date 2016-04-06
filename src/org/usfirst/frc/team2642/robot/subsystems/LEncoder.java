@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class LEncoder extends Subsystem {
-	public Encoder lencoder = new Encoder(0, 1);
+	public Encoder lencoder = new Encoder(2, 3);
 	
 	public double getLEncoder(){
 		return lencoder.get();

@@ -58,6 +58,15 @@ public class OI {
 	public Button auxSpinUp = new JoystickButton(auxillary, 3);			//Spin Up
 	public Button auxDeployDown = new JoystickButton(auxillary, 6);
 	public Button auxDeployIn = new JoystickButton(auxillary, 7);
+	
+	public Button auto1 = new JoystickButton(auxillary, 8);
+	public Button auto2 = new JoystickButton(auxillary, 11);
+	public Button auto3 = new JoystickButton(auxillary, 10);
+	public Button auto4 = new JoystickButton(auxillary, 9);
+	public Button auto5 = new JoystickButton(auxillary, 5);
+	public Button auto6 = new JoystickButton(auxillary, 4);
+
+
 	//public Button auxDeployOut = new JoystickButton(auxillary, 4);		//Deployer
 	//public Button auxDeployIn = new JoystickButton(auxillary, 5);				
 	//public Button auxDToggleSet = new JoystickButton(auxillary, 6);		//Deployer Toggle

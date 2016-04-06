@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class REncoder extends Subsystem {
-	public Encoder rencoder = new Encoder(2,3);
+	public Encoder rencoder = new Encoder(4,5);
 	
 	public double getREncoder(){
 		return rencoder.get();
